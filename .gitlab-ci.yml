@@ -32,14 +32,14 @@ build-test:
     - podman run -d --name $CONTAINER_NAME $IMAGE_FULL
     - sleep 3
     - podman ps
-    - CONTAINER_IP=$(podman inspect $CONTAINER_NAME --format '{{.NetworkSettings.IPAddress}}')
+    # - CONTAINER_IP=$(podman inspect $CONTAINER_NAME --format '{{.NetworkSettings.IPAddress}}')
+    # - echo "Container IP - $CONTAINER_IP"
     - podman inspect $CONTAINER_NAME --format '{{json .NetworkSettings}}'
     - podman inspect $CONTAINER_NAME --format '{{.HostConfig.NetworkMode}}'
-    - echo "Container IP - $CONTAINER_IP"
-    - curl -v http://$CONTAINER_IP:80
     - podman logs $CONTAINER_NAME
+    - curl -v http://localhost:80
     - |
-      RESULT=$(curl -s http://$CONTAINER_IP:80)
+      RESULT=$(curl -s http://localhost:80)
       echo "Response: $RESULT"
       echo "$RESULT" | grep -q "Hello, This is Yahoon's ArgoCD Demo from Local GitLab!" \
         && echo "✅ Test passed" \
