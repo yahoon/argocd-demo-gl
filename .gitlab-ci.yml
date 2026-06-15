@@ -49,8 +49,7 @@ test:
     - podman pull $DEV_IMAGE
 
     - echo "=== TEST ==="
-    - echo "Testing image $IMAGE_FULL by curl"
-    - podman run -d --name $CONTAINER_NAME $IMAGE_FULL
+    - podman run -d --name $CONTAINER_NAME --network host $DEV_IMAGE
     - sleep 3
     - podman ps
     # 我的容器 由runn而创建，网络是host 模式，所以没有IP地址，直接访问localhost就行了
@@ -66,6 +65,9 @@ test:
       echo "$RESULT" | grep -q "Hello, This is Yahoon's ArgoCD Demo from Local GitLab!" \
         && echo "✅ Test passed" \
         || (echo "❌ Test failed" && exit 1)
+    - podman tag $DEV_IMAGE $RC_IMAGE
+    - podman push $RC_IMAGE
+    - echo "✅ Pushed $RC_IMAGE"
   after_script:
     - podman rm -f $CONTAINER_NAME || true
   rules:
