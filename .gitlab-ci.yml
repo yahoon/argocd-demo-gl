@@ -5,7 +5,7 @@ stages:
 
 default:
   tags:
-    - itup-alm-x86
+    - shared-podman
   # before_script:
   #   - chmod -R go-w ${PWD}
   #   - git config --global --add safe.directory ${PWD}
