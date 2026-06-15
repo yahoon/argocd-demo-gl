@@ -29,13 +29,15 @@ build-test:
     - podman build -f $CONTAINERFILE_PATH -t $IMAGE_FULL $CONTEXT_PATH
     # Test the image
     - echo "Testing image $IMAGE_FULL by curl"
-    - podman run -d --name $CONTAINER_NAME -p 18080:80 $IMAGE_FULL
+    - podman run -d --name $CONTAINER_NAME $IMAGE_FULL
     - sleep 3
     - podman ps
-    - curl -v http://localhost:18080
+    - CONTAINER_IP=$(podman inspect $CONTAINER_NAME --format '{{.NetworkSettings.IPAddress}}')
+    - echo "Container IP: $CONTAINER_IP"
+    - curl -v http://$CONTAINER_IP:80
     - podman logs $CONTAINER_NAME
     - |
-      RESULT=$(curl -s http://localhost:18080)
+      RESULT=$(curl -s http://$CONTAINER_IP:80)
       echo "Response: $RESULT"
       echo "$RESULT" | grep -q "Hello, This is Yahoon's ArgoCD Demo from Local GitLab!" \
         && echo "✅ Test passed" \
