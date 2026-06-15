@@ -13,6 +13,6 @@ Demo for deploying ArgoCD application from local GitLab Repo
 
 ## Output:
 
-Container image: `argocd-demo-gl`
-Service: `argocd-demo-gl`
+- Container image: `argocd-demo-gl`
+- Service: `argocd-demo-gl`
 
