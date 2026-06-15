@@ -52,7 +52,7 @@ test:
     - podman run -d --name $CONTAINER_NAME --network host $DEV_IMAGE
     - sleep 3
     - podman ps
-    # 我的容器 由runn而创建，网络是host 模式，所以没有IP地址，直接访问localhost就行了
+    # 我的容器 由runner而创建，网络是host 模式，所以没有IP地址，直接访问localhost就行了
     # - CONTAINER_IP=$(podman inspect $CONTAINER_NAME --format '{{.NetworkSettings.IPAddress}}')
     # - echo "Container IP - $CONTAINER_IP"
     - podman inspect $CONTAINER_NAME --format '{{json .NetworkSettings}}'
