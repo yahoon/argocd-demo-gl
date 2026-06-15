@@ -33,6 +33,8 @@ build-test:
     - sleep 3
     - podman ps
     - CONTAINER_IP=$(podman inspect $CONTAINER_NAME --format '{{.NetworkSettings.IPAddress}}')
+    - podman inspect $CONTAINER_NAME --format '{{json .NetworkSettings}}'
+    - podman inspect $CONTAINER_NAME --format '{{.HostConfig.NetworkMode}}'
     - echo "Container IP - $CONTAINER_IP"
     - curl -v http://$CONTAINER_IP:80
     - podman logs $CONTAINER_NAME
