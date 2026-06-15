@@ -6,6 +6,7 @@ stages:
 default:
   tags:
     - shared-podman
+  image: quay.io/containers/podman:latest
   # before_script:
   #   - chmod -R go-w ${PWD}
   #   - git config --global --add safe.directory ${PWD}
