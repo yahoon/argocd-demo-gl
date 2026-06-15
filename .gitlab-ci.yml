@@ -28,9 +28,12 @@ build-test:
     - echo "Building image $IMAGE_FULL"
     - podman build -f $CONTAINERFILE_PATH -t $IMAGE_FULL $CONTEXT_PATH
     # Test the image
-    - echo "Testing image $IMAGE_FULL"
+    - echo "Testing image $IMAGE_FULL by curl"
     - podman run -d --name $CONTAINER_NAME -p 18080:80 $IMAGE_FULL
-    - sleep 2
+    - sleep 3
+    - podman ps
+    - curl -v http://localhost:18080
+    - podman logs $CONTAINER_NAME
     - |
       RESULT=$(curl -s http://localhost:18080)
       echo "Response: $RESULT"
