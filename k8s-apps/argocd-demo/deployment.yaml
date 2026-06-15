@@ -10,7 +10,7 @@ spec:
   template:
     metadata: 
       labels:
-        app: argocd-demo
+        app: argocd-demo-gl
     spec:
       containers:
       - name: nginx

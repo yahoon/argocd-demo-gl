@@ -16,4 +16,3 @@ Demo for Argo CD from local GitLab Repo
 Container image: `argocd-demo-gl`
 Service: `argocd-demo-gl`
 
-
