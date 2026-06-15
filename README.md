@@ -1,6 +1,6 @@
-# argocd-demo-dl
+# argocd-demo-gl
 
-Demo for Argo CD from local GitLab Repo
+Demo for deploying ArgoCD application from local GitLab Repo
 
 ## file layout
 ```Bash
