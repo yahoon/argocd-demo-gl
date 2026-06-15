@@ -1,3 +1,4 @@
 # FROM nginx:1.25-alpine
-FROM m.daocloud.io/docker.io/nginx:1.25-alpine
+# FROM m.daocloud.io/docker.io/nginx:1.25-alpine
+FROM quay.io/yahoon/nginx:1.25-alpine
 COPY ./index.html /usr/share/nginx/html/index.html
